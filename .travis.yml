@@ -1,0 +1,4 @@
+before_script: "git config --global push.default simple"
+script: "zip -r client.zip *"
+after_success: "git add client.zip; ls; chmod a+x cfgfix.sh; ./cfgfix.sh; shopt -s extglob; git rm -rf !(client.zip); git commit -m '0'; git push https://$U:$P@github.com/Mstrodl/packbuilds.git HEAD:master -f -qqqq >> /dev/null; ls"
+language: python
